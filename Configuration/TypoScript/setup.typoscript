@@ -1,0 +1,10 @@
+plugin.tx_pinlogin {
+    view {
+        templateRootPaths {
+            10 = EXT:pinlogin/Resources/Private/Templates/Pinlogin/
+        }
+        layoutRootPaths {
+            10 = EXT:pinlogin/Resources/Private/Layouts/Pinlogin/
+        }
+    }
+}

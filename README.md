@@ -1,2 +1,5 @@
-# typo3-pinlogin
-Front-end user PIN login extension for Typo3
+Sitepackage for the project "Pinlogin"
+==============================================================
+
+Add some explanation here.
+# homeinfo-pinlogin
