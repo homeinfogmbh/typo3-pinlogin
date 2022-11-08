@@ -43,8 +43,7 @@ final class AuthenticationService extends AbstractAuthenticationService
             return -2;
         }
 
-        $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
-            ->get(PINRepository::class)
+        $pin_entries = GeneralUtility::makeInstance(PINRepository::class)
             ->findByPinAndPid($pin, $GLOBALS['TSFE']->id);
 
         if ($pin_entries->count() < 1) {
