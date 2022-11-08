@@ -43,14 +43,16 @@ final class AuthenticationService extends AbstractAuthenticationService
             return -2;
         }
 
-        $pageUid = $GLOBALS['TSFE']->id;
-        $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)->get(PINRepository::class)->findByPinAndPid($pin, $pageUid);
+        $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
+            ->get(PINRepository::class)
+            ->findByPinAndPid($pin, $GLOBALS['TSFE']->id);
 
         if ($pin_entries->count() < 1) {
             return -3;
         }
 
-        return GeneralUtility::makeInstance(FrontendUserRepository::class)->findByUid($pin_entries[0]->feuserId);
+        return GeneralUtility::makeInstance(FrontendUserRepository::class)
+            ->findByUid($pin_entries[0]->feuserId);
     }
 
     private function isResponsible(): bool
