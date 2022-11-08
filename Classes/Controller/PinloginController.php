@@ -30,8 +30,7 @@ class PinloginController extends ActionController
     {
         $_POST['logintype'] = 'login';
         $_POST['login-provider'] = 'pinauthentication';
-        $authService = GeneralUtility::makeInstance(AuthenticationService::class);
-        $user = $authService->getUser();
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user);
+        $user = GeneralUtility::makeInstance(AuthenticationService::class)->getUser();
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "User:");
     }
 }
