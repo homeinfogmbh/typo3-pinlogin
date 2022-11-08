@@ -14,7 +14,7 @@ class CustomFrontendUserRepository extends FrontendUserRepository
         $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
 
         $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(FALSE);;
+        $query->getQuerySettings()->setRespectStoragePage(FALSE);
         $q = $query
             ->matching(
                 $query->equals('uid', $uid)
