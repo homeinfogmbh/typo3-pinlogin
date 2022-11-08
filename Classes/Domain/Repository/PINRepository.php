@@ -38,6 +38,12 @@ class PINRepository extends Repository
             'SELECT * FROM fe_users WHERE uid = ?',
             [$uid]
         );
-        return $query->execute();
+        $users = $query->execute();
+
+        if ($users->count() != 1) {
+            return FALSE;
+        }
+
+        return $users[0];
     }
 }
