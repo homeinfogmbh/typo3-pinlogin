@@ -31,13 +31,8 @@ final class AuthenticationService extends AbstractAuthenticationService
 {    
     use LoggerAwareTrait;
 
-    private $pin_repository;
-
     final public function getUser()
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->pin_repository = $objectManager->get(PINRepository::class);
-
         if (!$this->isResponsible()) {
             return -1;
         }
@@ -49,8 +44,7 @@ final class AuthenticationService extends AbstractAuthenticationService
         }
 
         $pageUid = $GLOBALS['TSFE']->id;
-        $all_entries = $this->pin_repository->findAll();
-        $pin_entries = $this->pin_repository->findByPinAndPid($pin, $pageUid);
+        $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)->get(PINRepository::class)->findByPinAndPid($pin, $pageUid);
 
         if ($pin_entries->count() < 1) {
             return -3;
