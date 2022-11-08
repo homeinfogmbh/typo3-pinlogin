@@ -59,7 +59,9 @@ final class AuthenticationService extends AbstractAuthenticationService
             return -3;
         }
 
-        return $this->pin_repository->getUserById($pin_entries[0]->feuserId);
+        $user = $this->pin_repository->getUserById($pin_entries[0]->feuserId);
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "User record:");
+        return $user;
     }
 
     private function isResponsible(): bool
