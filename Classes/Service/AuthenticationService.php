@@ -33,7 +33,7 @@ final class AuthenticationService extends AbstractAuthenticationService
 
     final public function getUser()
     {
-        if (!$this->isResponsible()) {
+        if (GeneralUtility::_POST("login-provider") !== "pinauthentication") {
             return -1;
         }
 
@@ -53,10 +53,5 @@ final class AuthenticationService extends AbstractAuthenticationService
 
         return GeneralUtility::makeInstance(FrontendUserRepository::class)
             ->findByUid($pin_entries[0]->feuserId);
-    }
-
-    private function isResponsible(): bool
-    {
-        return GeneralUtility::_POST("login-provider") === "pinauthentication";
     }
 }
