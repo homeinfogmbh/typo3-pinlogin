@@ -59,21 +59,11 @@ final class AuthenticationService extends AbstractAuthenticationService
             return -3;
         }
 
-        return $this->getUserById($pin_entries[0]->feuserId);
+        return $this->pin_repository->getUserById($pin_entries[0]->feuserId);
     }
 
     private function isResponsible(): bool
     {
         return GeneralUtility::_POST("login-provider") === "pinauthentication";
-    }
-
-    private function getUserById($uid) {
-        $query = $this->pin_repository->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(FALSE);
-        $query->statement(
-            'SELECT * FROM fe_users WHERE uid = ?',
-            [$uid]
-        );
-        return $query->execute();
     }
 }
