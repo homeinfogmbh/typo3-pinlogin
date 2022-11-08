@@ -24,7 +24,6 @@ use TYPO3\CMS\Core\Authentication\AbstractAuthenticationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-use Homeinfo\Pinlogin\Domain\Repository\CustomFrontendUserRepository;
 use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
 
 final class AuthenticationService extends AbstractAuthenticationService
@@ -32,13 +31,11 @@ final class AuthenticationService extends AbstractAuthenticationService
     use LoggerAwareTrait;
 
     private $pin_repository;
-    private $feuser_repository;
 
     final public function getUser()
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->pin_repository = $objectManager->get(PINRepository::class);
-        $this->feuser_repository = $objectManager->get(CustomFrontendUserRepository::class);
 
         if (!$this->isResponsible()) {
             return -1;
