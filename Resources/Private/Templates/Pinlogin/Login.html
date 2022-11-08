@@ -2,7 +2,15 @@
 <f:section name="Main">
     <div style="border:1px solid #fff;">
         <div class="mobileWraper">
-            <f:debug>{_all}</f:debug>
+            <f:if condition="{user}">
+                <f:then>
+                    <h2>Logged in as</h2><br>
+                    <p>Name: {user.username}</p>
+                </f:then>
+                <f:else>
+                    <h2>Login failed!</h2><br>
+                </f:else>
+            </f:if>
         </div>
     </div>
 </f:section>

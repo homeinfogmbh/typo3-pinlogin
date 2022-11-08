@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 use Homeinfo\Pinlogin\Service\AuthenticationService;
@@ -31,6 +32,10 @@ class PinloginController extends ActionController
         $_POST['logintype'] = 'login';
         $_POST['login-provider'] = 'pinauthentication';
         $user = GeneralUtility::makeInstance(AuthenticationService::class)->getUser();
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "User:");
+        DebuggerUtility::var_dump($user, "User:");
+    
+        if ($user) {
+            $this->view->assign('user', $user);
+        }
     }
 }
