@@ -22,6 +22,7 @@ namespace Homeinfo\Pinlogin\Service;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Authentication\AbstractAuthenticationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
@@ -55,7 +56,7 @@ final class AuthenticationService extends AbstractAuthenticationService
             return -3;
         }
 
-        return $this->pin_repository->getUserById($pin_entries[0]->feuserId);
+        return GeneralUtility::makeInstance(FrontendUserRepository::class)->findByUid($pin_entries[0]->feuserId);
     }
 
     private function isResponsible(): bool

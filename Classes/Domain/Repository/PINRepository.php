@@ -2,8 +2,6 @@
 
 namespace Homeinfo\Pinlogin\Domain\Repository;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -26,9 +24,5 @@ class PINRepository extends Repository
                 )
             )
             ->execute();
-    }
-
-    public function getUserById($uid) {
-        return GeneralUtility::makeInstance(FrontendUserRepository::class)->findByUid($uid);
     }
 }
