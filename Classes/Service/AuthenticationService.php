@@ -34,13 +34,13 @@ final class AuthenticationService extends AbstractAuthenticationService
     final public function getUser()
     {
         if (GeneralUtility::_POST("login-provider") !== "pinauthentication") {
-            return -1;
+            return FALSE;
         }
 
         $pin = GeneralUtility::_POST('pin');
 
         if (strlen($pin) != 4) {
-            return -2;
+            return FALSE;
         }
 
         $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
@@ -48,7 +48,7 @@ final class AuthenticationService extends AbstractAuthenticationService
             ->findByPinAndPid($pin, $GLOBALS['TSFE']->id);
 
         if ($pin_entries->count() < 1) {
-            return -3;
+            return FALSE;
         }
 
         return GeneralUtility::makeInstance(FrontendUserRepository::class)
