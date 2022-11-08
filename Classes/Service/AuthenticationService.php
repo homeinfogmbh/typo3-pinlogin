@@ -41,27 +41,21 @@ final class AuthenticationService extends AbstractAuthenticationService
             return -1;
         }
 
-        $pin = \TYPO3\CMS\Core\Utility\GeneralUtility::_POST('pin');
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($pin);
+        $pin = GeneralUtility::_POST('pin');
 
         if (strlen($pin) != 4) {
             return -2;
         }
 
         $pageUid = $GLOBALS['TSFE']->id;
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($pageUid);
         $all_entries = $this->pin_repository->findAll();
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($all_entries);
         $pin_entries = $this->pin_repository->findByPinAndPid($pin, $pageUid);
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($pin_entries);
 
         if ($pin_entries->count() < 1) {
             return -3;
         }
 
-        $user = $this->pin_repository->getUserById($pin_entries[0]->feuserId);
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "User record:");
-        return $user;
+        return $this->pin_repository->getUserById($pin_entries[0]->feuserId);
     }
 
     private function isResponsible(): bool

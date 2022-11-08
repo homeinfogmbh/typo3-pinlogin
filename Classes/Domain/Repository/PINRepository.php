@@ -16,38 +16,19 @@ class PINRepository extends Repository
         string $pin,
         int $pid
     ): QueryResultInterface {
-        $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
-
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(FALSE);
-        $q = $query
+        return $query
             ->matching(
                 $query->logicalAnd(
                     $query->equals('pin', $pin),
                     $query->equals('pid', $pid)
                 )
-            );
-        $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($q);
-        DebuggerUtility::var_dump($queryBuilder->getSQL());
-        DebuggerUtility::var_dump($queryBuilder->getParameters());
-        return $q->execute();
+            )
+            ->execute();
     }
 
     public function getUserById($uid) {
-        // $query = $this->createQuery();
-        // $query->getQuerySettings()->setRespectStoragePage(FALSE);
-        // $query->statement(
-        //     'SELECT * FROM fe_users WHERE uid = ?',
-        //     [$uid]
-        // );
-        // $users = $query->execute();
-
-        // if ($users->count() != 1) {
-        //     return FALSE;
-        // }
-
-        $frontendUserRepository = GeneralUtility::makeInstance(FrontendUserRepository::class);
-        return $frontendUserRepository->findByUid($uid);
-        // return $users[0];
+        return GeneralUtility::makeInstance(FrontendUserRepository::class)->findByUid($uid);
     }
 }
