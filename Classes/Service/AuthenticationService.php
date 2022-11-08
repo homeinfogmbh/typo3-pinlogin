@@ -70,9 +70,10 @@ final class AuthenticationService extends AbstractAuthenticationService
     private function getUserById($uid) {
         $query = $this->pin_repository->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(FALSE);
-        return $query->statement(
+        $query->statement(
             'SELECT * FROM fe_users WHERE uid = ?',
             [$uid]
-        ).execute();
+        );
+        return $query->execute();
     }
 }
