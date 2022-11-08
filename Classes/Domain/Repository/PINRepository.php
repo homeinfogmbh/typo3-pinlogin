@@ -14,9 +14,7 @@ class PINRepository extends Repository
         string $pin,
         int $pid
     ): QueryResultInterface {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(FALSE);
-        return $query
+        return $this->getStorageIndependentQuery()
             ->matching(
                 $query->logicalAnd(
                     $query->equals('pin', $pin),
@@ -24,5 +22,11 @@ class PINRepository extends Repository
                 )
             )
             ->execute();
+    }
+
+    private function getStorageIndependentQuery() {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(FALSE);
+        return $query;
     }
 }
