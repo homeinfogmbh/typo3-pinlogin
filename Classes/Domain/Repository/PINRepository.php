@@ -14,7 +14,8 @@ class PINRepository extends Repository
         string $pin,
         int $pid
     ): QueryResultInterface {
-        return $this->getStorageIndependentQuery()
+        $query = $this->getStorageIndependentQuery();
+        return $query
             ->matching(
                 $query->logicalAnd(
                     $query->equals('pin', $pin),
