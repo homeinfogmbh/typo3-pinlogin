@@ -30,10 +30,27 @@ use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
 final class AuthenticationService extends AbstractAuthenticationService
 {    
     use LoggerAwareTrait;
+    
+    final public function authUser(array $user): int
+    {
+        if (!$this->isResponsible()) {
+            return AuthenticationStatus::FAIL_CONTINUE;
+        }
+
+        if (TYPO3_MODE !== "FE") {
+            return AuthenticationStatus::FAIL_CONTINUE;
+        }
+
+        if ($user && !$user->empty()) {
+            return AuthenticationStatus::FAIL_CONTINUE;
+        }
+
+        return AuthenticationStatus::SUCCESS_BREAK;
+    }
 
     final public function getUser()
     {
-        if (GeneralUtility::_POST("login-provider") !== "pinauthentication") {
+        if (!$this->isResponsible()) {
             return FALSE;
         }
 
@@ -53,5 +70,9 @@ final class AuthenticationService extends AbstractAuthenticationService
 
         return GeneralUtility::makeInstance(FrontendUserRepository::class)
             ->findByUid($pin_entries[0]->feuserId);
+    }
+
+    private function isResponsible(): bool {
+        return GeneralUtility::_POST("login-provider") === "pinauthentication";
     }
 }
