@@ -68,6 +68,8 @@ final class AuthenticationService extends AbstractAuthenticationService
     }
 
     private function getUserById($uid) {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(FALSE);
         return $query->statement(
             'SELECT * FROM fe_users WHERE uid = ?',
             [$uid]
