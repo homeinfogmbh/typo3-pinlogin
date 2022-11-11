@@ -33,7 +33,6 @@ final class AuthenticationService extends AbstractAuthenticationService
     
     final public function authUser(array $user): int
     {
-
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "Authenticating user:");
     
         if (!$this->isResponsible()) {
@@ -53,6 +52,8 @@ final class AuthenticationService extends AbstractAuthenticationService
 
     final public function getUser()
     {
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("Getting user:");
+
         if (!$this->isResponsible()) {
             return FALSE;
         }
