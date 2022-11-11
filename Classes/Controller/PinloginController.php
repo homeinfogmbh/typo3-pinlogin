@@ -34,8 +34,10 @@ class PinloginController extends ActionController
         $_POST['logintype'] = 'login';
         $_POST['user'] = 'foo';
         $_POST['pass'] = 'bar';
-        $service = GeneralUtility::makeInstance(AuthenticationService::class);
+        $service = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
         DebuggerUtility::var_dump($service, "Service:");
+        $started = $service->start();
+        DebuggerUtility::var_dump($started, "Start returned:");
         $user = NULL;
         //$user = $service->getUser();
         // $_POST['user'] = $user->getEmail();
