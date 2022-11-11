@@ -12,7 +12,7 @@ $extensionKey = 'pinlogin';
 // );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    'Pinlogin',
+    $extname,
     'auth',
     \Homeinfo\Pinlogin\Service\AuthenticationService::class,
     [
