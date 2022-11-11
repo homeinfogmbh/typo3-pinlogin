@@ -72,7 +72,10 @@ final class PINAuthService extends AbstractAuthenticationService
         $user = GeneralUtility::makeInstance(FrontendUserRepository::class)
             ->findByUid($pin_entries[0]->feuserId);
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "Returning user:");
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "User record:");
+        $user = parent::fetchUserRecord($user->uname);
+
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "Fetched user:");
         return $user;
     }
 
