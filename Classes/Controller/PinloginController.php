@@ -4,11 +4,12 @@ namespace Homeinfo\Pinlogin\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 
+use TYPO3\CMS\Core\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 use Homeinfo\Pinlogin\Service\AuthenticationService;
 
