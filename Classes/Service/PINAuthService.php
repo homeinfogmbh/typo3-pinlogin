@@ -19,7 +19,6 @@
 
 namespace Homeinfo\Pinlogin\Service;
 
-use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Authentication\AbstractAuthenticationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
@@ -29,8 +28,6 @@ use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
 
 final class PINAuthService extends AbstractAuthenticationService
 {    
-    use LoggerAwareTrait;
-    
     final public function authUser(array $user)
     {
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "Authenticating user:");
