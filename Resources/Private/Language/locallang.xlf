@@ -6,6 +6,9 @@
             <authorEmail>info@homeinfo.de</authorEmail>
         </header>
         <body>
+            <trans-unit id="login.pin" xml:space="preserve">
+                <source>PIN Login</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
