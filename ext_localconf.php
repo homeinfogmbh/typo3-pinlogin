@@ -19,7 +19,7 @@ defined('TYPO3_MODE') || die();
 
         'subtype' => 'authUserFE, getUserFE',
 
-        'available' => false,
+        'available' => TRUE,
         'priority' => 100,
         'quality' => 100,
         'os' => 'Any',
