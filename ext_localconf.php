@@ -10,9 +10,9 @@ defined('TYPO3_MODE') || die();
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    'pinlogin',
+    'Pinlogin',
     'auth',
-    'tx_homeinfo_pinlogin',
+    'Pinlogin',
     [
         'title' => 'Front-end user PIN authentication service',
         'description' => 'Log in front-end users via PINs.',
