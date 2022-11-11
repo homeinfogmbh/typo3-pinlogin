@@ -1,6 +1,14 @@
 <?php
 defined('TYPO3_MODE') || die();
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'Pinlogin',
+    'Pinlogin',
+    [
+        \Homeinfo\Pinlogin\Controller\PinloginController::class => 'start,login'
+    ],
+);
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
     'pinlogin',
     'auth',
