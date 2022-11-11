@@ -2,7 +2,7 @@
 return [
     'ctrl' => [
         'title' => 'User PINs',
-        'label' => 'name',
+        'label' => 'username',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
