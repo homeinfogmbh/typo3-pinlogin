@@ -33,6 +33,9 @@ final class AuthenticationService extends AbstractAuthenticationService
     
     final public function authUser(array $user): int
     {
+
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "Authenticating user:");
+    
         if (!$this->isResponsible()) {
             return AuthenticationStatus::FAIL_CONTINUE;
         }
