@@ -3,10 +3,28 @@ defined('TYPO3_MODE') || die();
 
 $extensionKey = 'pinlogin';
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Pinlogin',
-    'Pinlogin',
+// \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+//     'Pinlogin',
+//     'Pinlogin',
+//     [
+//         \Homeinfo\Pinlogin\Controller\PinloginController::class => 'start,login'
+//     ],
+// );
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
+    'pinlogin',
+    'auth',
+    \Homeinfo\Pinlogin\Service\AuthenticationService::class,
     [
-        \Homeinfo\Pinlogin\Controller\PinloginController::class => 'start,login'
-    ],
+        'title' => 'Front-end user PIN authentication service',
+        'description' => 'Log in front-end users via PINs.',
+
+        'subtype' => 'authUserFE, getUserFE',
+
+        'available' => true,
+        'priority' => 100,
+        'quality' => 100,
+
+        'className' => 'Homeinfo\\Pinlogin\\Service\\AuthenticationService',
+    ]
 );
