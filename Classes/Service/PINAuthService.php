@@ -31,7 +31,7 @@ final class PINAuthService extends AbstractAuthenticationService
 {    
     use LoggerAwareTrait;
     
-    final public function authUser(array $user): int
+    final public function authUser(array $user)
     {
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "Authenticating user:");
     
