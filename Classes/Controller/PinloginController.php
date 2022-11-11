@@ -4,12 +4,12 @@ namespace Homeinfo\Pinlogin\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 
-use TYPO3\CMS\Core\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 use Homeinfo\Pinlogin\Service\AuthenticationService;
 
@@ -35,7 +35,7 @@ class PinloginController extends ActionController
         $_POST['logintype'] = 'login';
         $_POST['user'] = 'foo';
         $_POST['pass'] = 'bar';
-        $service = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Authentication\FrontendUserAuthentication::class);
+        $service = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
         DebuggerUtility::var_dump($service, "Service:");
         $started = $service->start();
         DebuggerUtility::var_dump($started, "Start returned:");
