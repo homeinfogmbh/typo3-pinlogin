@@ -24,6 +24,7 @@ $extensionKey = 'pinlogin';
         'available' => true,
         'priority' => 100,
         'quality' => 100,
+        'os' => '*',
 
         'className' => 'Homeinfo\\Pinlogin\\Service\\AuthenticationService',
     ]
