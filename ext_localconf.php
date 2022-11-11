@@ -10,7 +10,7 @@ defined('TYPO3_MODE') || die();
 // );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    $_EXTKEY,
+    'pinlogin',
     'auth',
     \Homeinfo\Pinlogin\Service\AuthenticationService::class,
     [
