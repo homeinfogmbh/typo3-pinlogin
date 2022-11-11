@@ -27,7 +27,7 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
 
-final class AuthenticationService extends AbstractAuthenticationService
+final class PINAuthService extends AbstractAuthenticationService
 {    
     use LoggerAwareTrait;
     

@@ -11,8 +11,6 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
-use Homeinfo\Pinlogin\Service\AuthenticationService;
-
 class PinloginController extends ActionController
 {
     protected Context $context;
