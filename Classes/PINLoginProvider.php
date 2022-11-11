@@ -24,7 +24,7 @@ class PINLoginProvider implements LoginProviderInterface
 
         $view->setTemplatePathAndFilename(
             GeneralUtility::getFileAbsFileName(
-                'EXT:pinlogin/Resources/Private/Templates/login.html'
+                'EXT:pinlogin/Resources/Private/Templates/Login.html'
             )
         );
 
