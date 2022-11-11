@@ -22,7 +22,7 @@ defined('TYPO3_MODE') || die();
         'available' => true,
         'priority' => 100,
         'quality' => 100,
-        'os' => '*',
+        'os' => 'Any',
         'exec' => '',
 
         'className' => 'Homeinfo\\Pinlogin\\Service\\AuthenticationService',
