@@ -24,5 +24,5 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['frontend']['loginProviders'][1433416020]
     'provider' => \Homeinfo\Pinlogin\PINLoginProvider::class,
     'sorting' => 50,
     'icon-class' => 'fa-key',
-    'label' => 'LLL:EXT:samlauthentication/Resources/Private/Language/locallang.xlf:login.pin'
+    'label' => 'LLL:EXT:pinlogin/Resources/Private/Language/locallang.xlf:login.pin'
 ];
