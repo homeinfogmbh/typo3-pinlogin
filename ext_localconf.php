@@ -22,8 +22,8 @@ defined('TYPO3_MODE') || die();
         'available' => TRUE,
         'priority' => 100,
         'quality' => 100,
-        'os' => 'Any',
-        'exec' => NULL,
+        'os' => '',
+        'exec' => '',
 
         'className' => \Homeinfo\Pinlogin\Service\PINAuthService::class,
     ]
