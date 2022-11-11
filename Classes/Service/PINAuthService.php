@@ -57,13 +57,14 @@ final class PINAuthService extends AbstractAuthenticationService
         if (!$this->isResponsible()) {
             return FALSE;
         }
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("Getting user: 1");
 
         $pin = GeneralUtility::_POST('pin');
 
         if (strlen($pin) != 4) {
             return FALSE;
         }
-
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("Getting user: 2");
         $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(PINRepository::class)
             ->findByPinAndPid($pin, $GLOBALS['TSFE']->id);
@@ -71,7 +72,7 @@ final class PINAuthService extends AbstractAuthenticationService
         if ($pin_entries->count() < 1) {
             return FALSE;
         }
-
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("Getting user: 3");
         return GeneralUtility::makeInstance(FrontendUserRepository::class)
             ->findByUid($pin_entries[0]->feuserId);
     }
