@@ -1,8 +1,6 @@
 <?php
 defined('TYPO3_MODE') || die();
 
-$extensionKey = 'pinlogin';
-
 // \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 //     'Pinlogin',
 //     'Pinlogin',
@@ -12,7 +10,7 @@ $extensionKey = 'pinlogin';
 // );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    $extname,
+    $_EXTKEY,
     'auth',
     \Homeinfo\Pinlogin\Service\AuthenticationService::class,
     [
