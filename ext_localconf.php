@@ -25,7 +25,7 @@ defined('TYPO3_MODE') || die();
         'os' => 'Any',
         'exec' => '',
 
-        'className' => 'Homeinfo\\Pinlogin\\Service\\AuthenticationService',
+        'className' => Homeinfo\Pinlogin\Service\AuthenticationService::class,
     ]
 );
 
