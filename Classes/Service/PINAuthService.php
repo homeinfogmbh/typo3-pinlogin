@@ -41,10 +41,6 @@ final class PINAuthService extends AbstractAuthenticationService
             return AuthenticationStatus::FAIL_CONTINUE;
         }
 
-        if ($user && !$user->empty()) {
-            return AuthenticationStatus::FAIL_CONTINUE;
-        }
-
         return AuthenticationStatus::SUCCESS_BREAK;
     }
 
@@ -75,14 +71,9 @@ final class PINAuthService extends AbstractAuthenticationService
         $entry = $pin_entries->getFirst();
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($entry, "PIN Entry:");
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($entry->feuserId, "User ID:");
-
-        $this->db_user['check_pid_clause'] = '';        
-        $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->db_user['table']);
-        $where_clause = $qb->expr()->andX(
-            $qb->expr()->eq('uid', $qb->expr()->literal($entry->feuserId))
-        );
-
+      
         // Typo3 v10 API will change here!
+        $this->db_user['check_pid_clause'] = '';  
         $user = $this->fetchUserRecord('', 'uid = ' . $entry->feuserId);
         if(!is_array($user)) {
             \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("User login failed.");
