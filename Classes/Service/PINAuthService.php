@@ -75,7 +75,8 @@ final class PINAuthService extends AbstractAuthenticationService
         $entry = $pin_entries->getFirst();
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($entry, "PIN Entry:");
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($entry->feuserId, "User ID:");
-        
+
+        $this->db_user['check_pid_clause'] = '';        
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->db_user['table']);
         $where_clause = $qb->expr()->andX(
             $qb->expr()->eq('uid', $qb->expr()->literal($entry->feuserId))
