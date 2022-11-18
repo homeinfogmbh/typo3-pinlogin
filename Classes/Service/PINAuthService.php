@@ -58,6 +58,8 @@ final class PINAuthService extends AbstractAuthenticationService
             return FALSE;
         }
 
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($GLOBALS, "Globals:");
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($_REQUEST, "Request:");
         $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(PINRepository::class)
             ->findByPinAndPid($pin, $GLOBALS['TSFE']->id);
