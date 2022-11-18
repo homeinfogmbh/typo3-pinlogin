@@ -3,9 +3,9 @@ defined('TYPO3_MODE') || die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'Pinlogin',
-    'Pinlogin',
+    'PIN login for front-end users',
     [
-        \Homeinfo\Pinlogin\Controller\PinloginController::class => 'start,login'
+        \Homeinfo\Pinlogin\Controller\PinloginController::class => 'start, login'
     ],
 );
 
