@@ -70,7 +70,6 @@ final class PINAuthService extends AbstractAuthenticationService
             return FALSE;
         }
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PIN Entries:", $pin_entries);
         $entry = $pin_entries[0];
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PIN Entry:", $entry);
         
