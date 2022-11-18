@@ -28,11 +28,9 @@ class PinloginController extends ActionController
 
     public function loginAction()
     {
-        $_POST['logintype'] = 'login';
-        $_POST['login-provider'] = 'pinauthentication';
-        $service = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
-        $service->start();
-        DebuggerUtility::var_dump($service, "Service:");
-        $this->view->assign('user', $service->user);
+        //$service = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
+        //$service->start();
+        //DebuggerUtility::var_dump($service, "Service:");
+        //$this->view->assign('user', $service->user);
     }
 }
