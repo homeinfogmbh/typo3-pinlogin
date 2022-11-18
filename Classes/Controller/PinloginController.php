@@ -33,5 +33,6 @@ class PinloginController extends ActionController
         $service = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
         DebuggerUtility::var_dump($service, "Service:");
         $service->start();
+        DebuggerUtility::var_dump($service, "Service state:");
     }
 }
