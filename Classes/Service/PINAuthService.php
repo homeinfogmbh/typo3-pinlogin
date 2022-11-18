@@ -71,7 +71,7 @@ final class PINAuthService extends AbstractAuthenticationService
         }
 
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("Query result:", gettype($pin_entries));
-        $entry = $pin_entries[0];
+        $entry = $pin_entries->getFirst();
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PIN Entry:", $entry);
         
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->db_user['table']);
