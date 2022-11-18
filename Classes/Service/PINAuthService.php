@@ -34,14 +34,14 @@ final class PINAuthService extends AbstractAuthenticationService
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "Authenticating user:");
     
         if (!$this->isResponsible()) {
-            return AuthenticationStatus::FAIL_CONTINUE;
+            return 100;
         }
 
         if (TYPO3_MODE !== "FE") {
-            return AuthenticationStatus::FAIL_CONTINUE;
+            return 100;
         }
 
-        return AuthenticationStatus::SUCCESS_BREAK;
+        return 200;
     }
 
     final public function getUser()
