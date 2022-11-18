@@ -52,7 +52,7 @@ final class PINAuthService extends AbstractAuthenticationService
             return FALSE;
         }
 
-        $pin = GeneralUtility::_POST('user');
+        $pin = GeneralUtility::_POST('pin');
 
         if (strlen($pin) != 4) {
             return FALSE;
