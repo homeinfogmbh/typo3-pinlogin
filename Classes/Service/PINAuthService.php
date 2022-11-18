@@ -83,7 +83,6 @@ final class PINAuthService extends AbstractAuthenticationService
         } 
 
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "User record:");
-        $this->logger->info('Successful token found', ['id'=>$user['uid'], 'username'=>$user['username'], 'token'=>$this->login['uname']]);
         return $user;
     }
 
