@@ -72,7 +72,7 @@ final class PINAuthService extends AbstractAuthenticationService
         
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->db_user['table']);
         $where_clause = $qb->expr()->andX(
-            $qb->expr()->eq($this->uid, $qb->expr()->literal($pin_entries->feuserId))
+            $qb->expr()->eq('uid', $qb->expr()->literal($pin_entries->feuserId))
         );
 
         // Typo3 v10 API will change here!
