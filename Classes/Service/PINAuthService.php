@@ -69,10 +69,14 @@ final class PINAuthService extends AbstractAuthenticationService
         if ($pin_entries->count() < 1) {
             return FALSE;
         }
+
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PIN Entries:", $pin_entries);
+        $entry = $pin_entries[0];
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PIN Entry:", $entry);
         
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->db_user['table']);
         $where_clause = $qb->expr()->andX(
-            $qb->expr()->eq('uid', $qb->expr()->literal($pin_entries->feuserId))
+            $qb->expr()->eq('uid', $qb->expr()->literal($entry->feuserId))
         );
 
         // Typo3 v10 API will change here!
