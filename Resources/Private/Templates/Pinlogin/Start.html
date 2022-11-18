@@ -3,7 +3,9 @@
     <div style="border:1px solid #fff;">
         <div class="mobileWraper">
             <f:form id="login" action="login">
-                <input id="pin" type="password" name="pin" placeholder="PIN" maxlength="4">
+                <f:form.hidden name="logintype" value="login" />
+                <f:form.hidden name="pid" value="{settings.membersPid}" />
+                <f:form.hidden name="user" value="" />
                 <button type="submit">Let's go</button>
             </f:form>
         </div>
