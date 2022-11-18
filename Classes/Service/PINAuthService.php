@@ -70,10 +70,11 @@ final class PINAuthService extends AbstractAuthenticationService
             return FALSE;
         }
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("Query result:", gettype($pin_entries));
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($pin_entries, "Query result:");
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(gettype($pin_entries), "Query result:");
         $entry = $pin_entries->getFirst();
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PIN Entry:", $entry);
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("User ID:", $entry->feuserId);
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($entry, "PIN Entry:");
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($entry->feuserId, "User ID:");
         
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->db_user['table']);
         $where_clause = $qb->expr()->andX(
