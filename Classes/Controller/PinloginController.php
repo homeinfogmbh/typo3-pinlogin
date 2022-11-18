@@ -24,6 +24,7 @@ class PinloginController extends ActionController
 
     public function startAction()
     {
+        $this->view->assign('pageId', $GLOBALS['TSFE']->id);
     }
 
     public function loginAction()

@@ -62,7 +62,7 @@ final class PINAuthService extends AbstractAuthenticationService
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($_REQUEST, "Request:");
         $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(PINRepository::class)
-            ->findByPinAndPid($pin, $GLOBALS['TSFE']->id);
+            ->findByPinAndPid($pin, intval($_POST['pageId']));
 
         if ($pin_entries->count() < 1) {
             return FALSE;
