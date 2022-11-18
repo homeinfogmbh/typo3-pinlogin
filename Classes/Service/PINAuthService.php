@@ -69,10 +69,20 @@ final class PINAuthService extends AbstractAuthenticationService
             return FALSE;
         }
         
-        $user = get_object_vars(GeneralUtility::makeInstance(FrontendUserRepository::class)
-            ->findByUid($pin_entries[0]->feuserId));
+        $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->db_user['table']);
+        $where_clause = $qb->expr()->andX(
+            $qb->expr()->eq($this->uid, $qb->expr()->literal($pin_entries->feuserId))
+        );
+
+        // Typo3 v10 API will change here!
+        $user = $this->fetchUserRecord('', $where_clause);
+        if(!is_array($user)) {
+            \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("User login failed.");
+            return FALSE;
+        } 
 
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "User record:");
+        $this->logger->info('Successful token found', ['id'=>$user['uid'], 'username'=>$user['username'], 'token'=>$this->login['uname']]);
         return $user;
     }
 
