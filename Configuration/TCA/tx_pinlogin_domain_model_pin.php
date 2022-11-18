@@ -1,4 +1,13 @@
 <?php
+
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
+ExtensionUtility::registerPlugin(
+    'Pinlogin',
+    'Pinlogin',
+    'PIN login form for front-end users'
+);
+
 return [
     'ctrl' => [
         'title' => 'User PINs',
