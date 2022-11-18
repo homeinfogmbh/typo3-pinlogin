@@ -82,7 +82,7 @@ final class PINAuthService extends AbstractAuthenticationService
         );
 
         // Typo3 v10 API will change here!
-        $user = $this->fetchUserRecord('', $where_clause);
+        $user = $this->fetchUserRecord('', 'uid = ' . $entry->feuserId);
         if(!is_array($user)) {
             \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("User login failed.");
             return FALSE;
