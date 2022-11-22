@@ -20,9 +20,7 @@
 namespace Homeinfo\Pinlogin\Service;
 
 use TYPO3\CMS\Core\Authentication\AbstractAuthenticationService;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
@@ -30,9 +28,7 @@ use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
 final class PINAuthService extends AbstractAuthenticationService
 {    
     final public function authUser(array $user)
-    {
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "Authenticating user:");
-    
+    {    
         if (!$this->isResponsible()) {
             return 100;
         }
@@ -46,8 +42,6 @@ final class PINAuthService extends AbstractAuthenticationService
 
     final public function getUser()
     {
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("Getting user:");
-
         if (!$this->isResponsible()) {
             return FALSE;
         }
@@ -58,7 +52,6 @@ final class PINAuthService extends AbstractAuthenticationService
             return FALSE;
         }
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(GeneralUtility::_GP('pageId'), "Request:");
         $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(PINRepository::class)
             ->findByPinAndPid($pin, intval(GeneralUtility::_GP('pageId')));
@@ -67,21 +60,14 @@ final class PINAuthService extends AbstractAuthenticationService
             return FALSE;
         }
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($pin_entries, "Query result:");
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(gettype($pin_entries), "Query result:");
         $entry = $pin_entries->getFirst();
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($entry, "PIN Entry:");
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($entry->feuserId, "User ID:");
       
-        // Typo3 v10 API will change here!
         $this->db_user['check_pid_clause'] = '';  
         $user = $this->fetchUserRecord('', 'uid = ' . $entry->feuserId);
         if(!is_array($user)) {
-            \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("User login failed.");
             return FALSE;
         } 
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user, "User record:");
         return $user;
     }
 
