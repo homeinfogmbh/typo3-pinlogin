@@ -52,17 +52,16 @@ final class PINAuthService extends AbstractAuthenticationService
             return FALSE;
         }
 
-        $pin = GeneralUtility::_POST('user');
+        $pin = GeneralUtility::_GP('user');
 
         if (strlen($pin) != 4) {
             return FALSE;
         }
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($GLOBALS, "Globals:");
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($_REQUEST, "Request:");
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(GeneralUtility::_GP('pageId'), "Request:");
         $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(PINRepository::class)
-            ->findByPinAndPid($pin, intval($_POST['pageId']));
+            ->findByPinAndPid($pin, intval(GeneralUtility::_GP('pageId')));
 
         if ($pin_entries->count() < 1) {
             return FALSE;
@@ -87,6 +86,6 @@ final class PINAuthService extends AbstractAuthenticationService
     }
 
     private function isResponsible(): bool {
-        return GeneralUtility::_POST("login-provider") === "pinauthentication";
+        return GeneralUtility::_GP("login-provider") === "pinauthentication";
     }
 }
