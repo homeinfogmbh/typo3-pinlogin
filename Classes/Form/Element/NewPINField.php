@@ -24,9 +24,9 @@ class NewPINField extends AbstractFormElement
       ];
       $result['html'] = '<input type="text" value="'
          . $this->getUniquePIN()
-         . ' '
+         . '" '
          . GeneralUtility::implodeAttributes($attributes, true)
-         . ' "/>';
+         . ' />';
       return $result;
    }
 
