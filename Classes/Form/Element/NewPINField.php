@@ -17,24 +17,8 @@ class NewPINField extends AbstractFormElement
 {
    public function render(): array
    {
-      $pin = this->getUniquePIN();
-      // Here be dragons
-      $html = [];
-      $html[] = '<div class="formengine-field-item t3js-formengine-field-item" style="padding: 5px; background-color: ' . $color . ';">';
-      $html[] = $fieldInformationHtml;
-      $html[] =   '<div class="form-wizards-wrap">';
-      $html[] =      '<div class="form-wizards-element">';
-      $html[] =         '<div class="form-control-wrap">';
-      $html[] =            '<input type="text" value="' . htmlspecialchars($itemValue, ENT_QUOTES) . '" ';
-      $html[]=               GeneralUtility::implodeAttributes($attributes, true);
-      $html[]=            ' />';
-      $html[] =         '</div>';
-      $html[] =      '</div>';
-      $html[] =   '</div>';
-      $html[] = '</div>';
-      $resultArray['html'] = implode(LF, $html);
-
-      return $resultArray;
+      $result['html'] = '<input type="text" value="' . this->getUniquePIN() . '"/>';
+      return $result;
    }
 
    private function getUniquePIN(): string
