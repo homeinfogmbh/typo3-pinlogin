@@ -17,6 +17,7 @@ class NewPINField extends AbstractFormElement
 {
    public function render(): array
    {
+      var_dump($this->data['parameterArray']);
       $attributes = [
          'name' => htmlspecialchars($this->data['parameterArray']['itemFormElName']),
          'data-formengine-input-name' => htmlspecialchars($this->data['parameterArray']['itemFormElName'])
