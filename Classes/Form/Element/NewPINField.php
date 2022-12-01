@@ -17,16 +17,16 @@ class NewPINField extends AbstractFormElement
 {
    public function render(): array
    {
-      $result['html'] = '<input type="text" value="' . this->getUniquePIN() . '"/>';
+      $result['html'] = '<input type="text" value="' . $this->getUniquePIN() . '"/>';
       return $result;
    }
 
    private function getUniquePIN(): string
    {
       while (true) {
-         $pin = this->generateRandomPIN();
+         $pin = $this->generateRandomPIN();
 
-         if (this->isUnique($pin)) {
+         if ($this->isUnique($pin)) {
             return $pin;
          }
       }
