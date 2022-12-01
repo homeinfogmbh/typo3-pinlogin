@@ -50,7 +50,12 @@ return [
             'exclude' => false,
             'label' => 'PIN',
             'config' => [
-                'type' => 'input',
+                'type' => 'user',
+                'renderType' => 'newPINField',
+                'parameters' => [
+                    'size' => '30',
+                    'color' => '#F49700',
+                ],
             ],
         ],
     ],

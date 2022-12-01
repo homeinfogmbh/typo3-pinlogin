@@ -28,3 +28,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['frontend']['loginProviders'][1433416020]
     'icon-class' => 'fa-key',
     'label' => 'LLL:EXT:pinlogin/Resources/Private/Language/locallang.xlf:login.pin'
 ];
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1669901057] = [
+    'nodeName' => 'newPINField',
+    'priority' => 40,
+    'class' => \Homeinfo\Pinlogin\Form\Element\NewPINField::class,
+];

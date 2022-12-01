@@ -13,7 +13,7 @@ use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
 
 const PIN_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-class PINElement extends AbstractFormElement
+class NewPINField extends AbstractFormElement
 {
    public function render(): array
    {
