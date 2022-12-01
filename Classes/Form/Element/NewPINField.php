@@ -18,10 +18,8 @@ class NewPINField extends AbstractFormElement
    public function render(): array
    {
       $attributes = [
-         'id' => $fieldId,
-         'name' => htmlspecialchars($parameterArray['itemFormElName']),
-         'size' => $size,
-         'data-formengine-input-name' => htmlspecialchars($parameterArray['itemFormElName'])
+         'name' => htmlspecialchars($this->data['parameterArray']['itemFormElName']),
+         'data-formengine-input-name' => htmlspecialchars($this->data['parameterArray']['itemFormElName'])
       ];
       $result['html'] = '<input type="text" value="'
          . $this->getUniquePIN()
