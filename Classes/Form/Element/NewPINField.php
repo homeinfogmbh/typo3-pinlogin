@@ -23,11 +23,20 @@ class NewPINField extends AbstractFormElement
          'data-formengine-input-name' => htmlspecialchars($this->data['parameterArray']['itemFormElName'])
       ];
       $result['html'] = '<input type="text" value="'
-         . $this->getUniquePIN()
+         . $this->getValue()
          . '" '
          . GeneralUtility::implodeAttributes($attributes, true)
          . ' />';
       return $result;
+   }
+
+   private function getValue(): string
+   {
+      if ($this->data['command'] == 'new') {
+         return $this->getUniquePIN();
+      }
+
+      return $this->data['databaseRow']['pin'];
    }
 
    private function getUniquePIN(): string
