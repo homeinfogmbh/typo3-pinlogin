@@ -10,6 +10,7 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
 
+const MAX_TRIES = 10;
 const PIN_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const PIN_LENGTH = 4;
 
@@ -40,13 +41,15 @@ class NewPINField extends AbstractFormElement
 
    private function getUniquePIN(): string
    {
-      while (true) {
+      for ($i = 0; $i < MAX_TRIES; $i++) {
          $pin = $this->generateRandomPIN();
 
          if ($this->isUnique($pin)) {
             return $pin;
          }
       }
+
+      return '';
    }
 
    private function isUnique($pin): bool
