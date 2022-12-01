@@ -7,10 +7,15 @@ namespace Homeinfo\Pinlogin\Form\Element;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+
+use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
+
+const PIN_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 class PINElement extends AbstractFormElement
 {
-   public function render():array
+   public function render(): array
    {
       $row = $this->data['databaseRow'];
       $parameterArray = $this->data['parameterArray'];
@@ -56,5 +61,35 @@ class PINElement extends AbstractFormElement
       $resultArray['html'] = implode(LF, $html);
 
       return $resultArray;
+   }
+
+   private function getUniquePIN(): string
+   {
+      while (true) {
+         $pin = this->generateRandomPIN();
+
+         if (this->isPINUnique($pin)) {
+            return $pin;
+         }
+      }
+   }
+
+   private function isPINUnique($pin): bool
+   {
+      return GeneralUtility::makeInstance(ObjectManager::class)
+         ->get(PINRepository::class)
+         ->findByPinAndPid($pin, intval(GeneralUtility::_GP('pageId')))
+         == 0;
+   }
+
+   private function generateRandomPIN(): string
+   {
+      $pin = '';
+
+      for ($i = 0; $i < $n; $i++) {
+         $pin .= $PIN_CHARS[rand(0, strlen($PIN_CHARS) - 1)];
+      }
+
+      return $pin;
    }
 }
