@@ -45,8 +45,8 @@ class NewPINField extends AbstractFormElement
    {
       $pin = '';
 
-      for ($i = 0; $i < $PIN_LENGTH; $i++) {
-         $pin .= $PIN_CHARS[rand(0, strlen($PIN_CHARS) - 1)];
+      for ($i = 0; $i < PIN_LENGTH; $i++) {
+         $pin .= PIN_CHARS[rand(0, strlen($PIN_CHARS) - 1)];
       }
 
       return $pin;
