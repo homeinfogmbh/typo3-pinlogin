@@ -42,13 +42,13 @@ class PINElement extends AbstractFormElement
       while (true) {
          $pin = this->generateRandomPIN();
 
-         if (this->isPINUnique($pin)) {
+         if (this->isUnique($pin)) {
             return $pin;
          }
       }
    }
 
-   private function isPINUnique($pin): bool
+   private function isUnique($pin): bool
    {
       return GeneralUtility::makeInstance(ObjectManager::class)
          ->get(PINRepository::class)
