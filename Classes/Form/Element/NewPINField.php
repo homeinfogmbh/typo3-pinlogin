@@ -6,7 +6,6 @@ namespace Homeinfo\Pinlogin\Form\Element;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
@@ -18,7 +17,17 @@ class NewPINField extends AbstractFormElement
 {
    public function render(): array
    {
-      $result['html'] = '<input type="text" value="' . $this->getUniquePIN() . '"/>';
+      $attributes = [
+         'id' => $fieldId,
+         'name' => htmlspecialchars($parameterArray['itemFormElName']),
+         'size' => $size,
+         'data-formengine-input-name' => htmlspecialchars($parameterArray['itemFormElName'])
+      ];
+      $result['html'] = '<input type="text" value="'
+         . $this->getUniquePIN()
+         . ' '
+         . GeneralUtility::implodeAttributes($attributes, true)
+         . ' "/>';
       return $result;
    }
 
