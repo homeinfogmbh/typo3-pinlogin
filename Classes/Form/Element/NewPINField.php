@@ -38,7 +38,8 @@ class NewPINField extends AbstractFormElement
       return GeneralUtility::makeInstance(ObjectManager::class)
          ->get(PINRepository::class)
          ->findByPinAndPid($pin, intval(GeneralUtility::_GP('pageId')))
-         == 0;
+         ->count()
+         < 1;
    }
 
    private function generateRandomPIN(): string
