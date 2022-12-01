@@ -12,6 +12,7 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 use Homeinfo\Pinlogin\Domain\Repository\PINRepository;
 
 const PIN_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const PIN_LENGTH = 4;
 
 class NewPINField extends AbstractFormElement
 {
@@ -44,7 +45,7 @@ class NewPINField extends AbstractFormElement
    {
       $pin = '';
 
-      for ($i = 0; $i < $n; $i++) {
+      for ($i = 0; $i < $PIN_LENGTH; $i++) {
          $pin .= $PIN_CHARS[rand(0, strlen($PIN_CHARS) - 1)];
       }
 
