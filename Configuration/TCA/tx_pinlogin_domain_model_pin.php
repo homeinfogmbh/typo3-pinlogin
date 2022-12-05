@@ -56,6 +56,9 @@ return [
                     'size' => '30',
                     'color' => '#F49700',
                 ],
+                'regularExpression' => [
+                    'expression' => '^[a-zA-Z0-9]{4}$'
+                 ]
             ],
         ],
     ],
