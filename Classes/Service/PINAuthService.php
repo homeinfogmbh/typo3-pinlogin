@@ -29,22 +29,19 @@ final class PINAuthService extends AbstractAuthenticationService
 {    
     final public function authUser(array $user)
     {    
-        if (!$this->isResponsible()) {
+        if (!$this->isResponsible())
             return 100;
-        }
 
-        if (TYPO3_MODE !== "FE") {
+        if (TYPO3_MODE !== "FE")
             return 100;
-        }
 
         return 200;
     }
 
     final public function getUser()
     {
-        if (!$this->isResponsible()) {
+        if (!$this->isResponsible())
             return false;
-        }
 
         $pin = GeneralUtility::_GP('user');
 
