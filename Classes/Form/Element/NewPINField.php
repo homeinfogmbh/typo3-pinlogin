@@ -52,7 +52,7 @@ class NewPINField extends AbstractFormElement
       return '';
    }
 
-   private function isUnique($pin): bool
+   private function isUnique(string $pin): bool
    {
       return GeneralUtility::makeInstance(ObjectManager::class)
          ->get(PINRepository::class)
