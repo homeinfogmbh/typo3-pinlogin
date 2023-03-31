@@ -59,7 +59,7 @@ final class PINAuthService extends AbstractAuthenticationService
         $this->db_user['check_pid_clause'] = '';  
         $user = $this->fetchUserRecord('', 'uid = ' . $entry->feuserId);
 
-        if(!is_array($user))
+        if (!is_array($user))
             return false;
 
         return $user;
