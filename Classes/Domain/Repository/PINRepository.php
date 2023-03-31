@@ -10,7 +10,8 @@ class PINRepository extends Repository
     public function findByPinAndPid(
         string $pin,
         int $pid
-    ): QueryResultInterface {
+    ): QueryResultInterface
+    {
         $query = $this->getStorageIndependentQuery();
         return $query
             ->matching(
@@ -22,7 +23,8 @@ class PINRepository extends Repository
             ->execute();
     }
 
-    private function getStorageIndependentQuery() {
+    private function getStorageIndependentQuery()
+    {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(FALSE);
         return $query;

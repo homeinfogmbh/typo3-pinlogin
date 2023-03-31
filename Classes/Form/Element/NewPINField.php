@@ -32,9 +32,8 @@ class NewPINField extends AbstractFormElement
 
    private function getValue(): string
    {
-      if ($this->data['command'] == 'new') {
+      if ($this->data['command'] == 'new')
          return $this->getUniquePIN();
-      }
 
       return $this->data['databaseRow']['pin'];
    }
@@ -44,9 +43,8 @@ class NewPINField extends AbstractFormElement
       for ($i = 0; $i < MAX_TRIES; $i++) {
          $pin = $this->generateRandomPIN();
 
-         if ($this->isUnique($pin)) {
+         if ($this->isUnique($pin))
             return $pin;
-         }
       }
 
       return '';
@@ -65,9 +63,8 @@ class NewPINField extends AbstractFormElement
    {
       $pin = '';
 
-      for ($i = 0; $i < PIN_LENGTH; $i++) {
+      for ($i = 0; $i < PIN_LENGTH; $i++)
          $pin .= PIN_CHARS[rand(0, strlen(PIN_CHARS) - 1)];
-      }
 
       return $pin;
    }

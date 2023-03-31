@@ -43,35 +43,33 @@ final class PINAuthService extends AbstractAuthenticationService
     final public function getUser()
     {
         if (!$this->isResponsible()) {
-            return FALSE;
+            return false;
         }
 
         $pin = GeneralUtility::_GP('user');
 
-        if (strlen($pin) != 4) {
-            return FALSE;
-        }
+        if (strlen($pin) != 4)
+            return false;
 
         $pin_entries = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(PINRepository::class)
             ->findByPinAndPid($pin, intval(GeneralUtility::_GP('pageId')));
 
-        if ($pin_entries->count() < 1) {
-            return FALSE;
-        }
+        if ($pin_entries->count() < 1)
+            return false;
 
         $entry = $pin_entries->getFirst();
-      
         $this->db_user['check_pid_clause'] = '';  
         $user = $this->fetchUserRecord('', 'uid = ' . $entry->feuserId);
-        if(!is_array($user)) {
-            return FALSE;
-        } 
+
+        if(!is_array($user))
+            return false;
 
         return $user;
     }
 
-    private function isResponsible(): bool {
+    private function isResponsible(): bool
+    {
         return GeneralUtility::_GP("login-provider") === "pinauthentication";
     }
 }
